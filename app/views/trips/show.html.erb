@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <body>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <p>
+          <strong>Destination:</strong>
+          <%= @trip.destination %>
+        </p>
+        <p>
+          <strong>Startdate:</strong>
+          <%= @trip.startdate %>
+        </p>
+
+        <p>
+          <strong>Enddate:</strong>
+          <%= @trip.enddate %>
+        </p>
+        
+         <br/>
+         
+         <p> 
+         <strong>Trips Add-on:</strong>
+         <%=  @trip_add_on %></p>
+         <br/>
+         
+        <iframe width="400" height="400" frameborder="0" style="border:0"
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD2noFih7eI5djAPfn5OpKy7d7hDE-ywaQ&q=<%= @trip.latitude %>,<%= @trip.longitude %>"
+          allowfullscreen>
+       </iframe>
+
+       </td>
+       
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      
+      <td style="border: 4px solid black;">
+        
+        
+          <strong><h1 style="text-decoration: underline;">Weather Forecast</strong></h1>
+           <h4 style="text-decoration: underline;">For <%= @trip.destination %></p></h4>
+         
+            <strong><p>Summary: <%= @summary %></p> 
+           <p>Temperature:</h6> <%= @temperature %></p>
+           <p>WindSpeed:</h6> <%= @windSpeed %></p>
+           <p>Timezone:</h6> <%= @timezone %></p></strong>
+            <%= link_to 'Click me to see Complete Weather Forecast', trip_customweathers_path(@trip), class: 'btn btn-success' %>
+           
+           
+       </td>
+       <td>  &nbsp;&nbsp; &nbsp;&nbsp;</td>
+       <td >
+           
+          <div class="blink_me"><strong>Your  <%= @trip.destination %> Trip will Start on <%= @trip.startdate %> </strong></div>
+          <br/>
+         <div style="border: 2px solid black;">
+        <strong  style="text-decoration: underline;">Venues near <%= @trip.destination %></strong>
+        <ul><br>
+          <li>
+              
+          <%= link_to 'Show Venues', trip_caffes_path(@trip), class: 'btn btn-info' %>
+          </li>
+        </ul>
+         </div>
+         <br>
+         <div style="border: 2px solid black;">
+            <strong  style="text-decoration: underline;">Events near <%= @trip.destination %></strong><br>
+        <ul><br>
+          <li>
+          <%= link_to 'Show Events', trip_eventsnearbies_path(@trip), class: 'btn btn-info' %>
+          </li>
+        </ul>
+         </div>
+      </td>
+      
+       
+ </tr>
+ <tr>
+     
+    <td> 
+        <p>
+          <strong>Attached Images:</strong>
+          </p>
+     <%=(0...@trip.images.count).each do |image| %>
+    <%= image_tag(@trip.thumbnail(image)) %><br>
+    <%end%>
+    </td>
+    </tr>
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>
+         
+          
+        
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Custom gem used -->
+<br/><br/>
+<div>
+     <%= month_calendar(attribute: @trip.startdate.to_s) do |date| %>
+        <% if date.day == @trip.startdate.day && date.month == @trip.startdate.month && date.year == @trip.startdate.year %>
+           <%=  date.day %>
+                 <h4  style="background-color: coral;"> <%=  @trip.destination %> Trip will start. </h4>
+         <%else%>
+             <%=  date.day %>
+          <%end%> 
+     <% end %>
+</div>
+ <br/><br/>
+<% if @trip.enddate >= Time.now.to_date %>
+<%= link_to 'Edit', edit_trip_path(@trip) , class: 'btn btn-info'%> |
+<%else%>
+<%= link_to 'Edit', edit_trip_path(@trip) , class: 'btn btn-info disabled'%> |
+<%end%>
+<%= link_to 'View All Trips', trips_path , class: 'btn btn-info'%>
+</body>
+</html>

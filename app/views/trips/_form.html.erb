@@ -1,0 +1,56 @@
+<%= form_with(model: trip, local: true) do |form| %>
+  <% if trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+
+      <ul>
+      <% trip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :destination %>
+    <%= form.text_field :destination %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :startdate %>
+    <%= form.date_select :startdate %>
+  </div><br/>
+
+  <div class="field">
+    <%= form.label :enddate %>
+    <%= form.date_select :enddate %>
+  </div><br/>
+  
+  <div class="field">
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+  
+  <!-- Added Trip Decorations  -->
+  <div>
+    <h1>Choose add-on for the trip</h1>
+    <div class="field">
+     All inclusive:
+     <%= check_box_tag 'trip[all]', 'all' %>
+    </div>
+<div class="field">
+     With AirBNB:
+    <%= check_box_tag 'trip[airbnb]', 'airbnb' %>
+</div>
+<div class="field">
+     Breakfast only:
+  <%= check_box_tag 'trip[breakfast]', 'breakfast' %>
+</div>
+</div>
+<!-- Added Trip Decorations  -->
+  
+ <br/>
+  <div class="actions">
+    <%= form.submit %>
+  </div> <br/>
+<% end %>

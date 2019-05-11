@@ -1,0 +1,11 @@
+
+<%= form_for([@message, @message.comments.build]) do |f| %>
+  
+  
+  <%= f.text_area :content, :class => "form-control z-depth-1" %>
+
+  <br>
+ 
+	<%= f.button :Comment, class: "btn btn-custom bottom" %>
+<br>
+<% end %>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<head>
+        
+</head>
+<h1 style="text-decoration: underline; text-align: center; text-shadow: 2px 2px green">Detail Weather Forecast for <%= @trip.destination %></h1>   </br>
+<%= link_to 'Back to Trip', @trip, class: 'btn btn-info' %>
+
+<!-- Default Embed for temp-->
+<script type='text/javascript' 
+        src='https://darksky.net/widget/default/<%= @trip.latitude %>,<%= @trip.longitude %>/uk12/en.js?width=100%&height=350&title=Full 
+        Forecast&textColor=333333&bgColor=transparent&transparency=true&skyColor=undefined&fontFamily=Default&customFont=&units=uk&htColor=333333&ltColor=C7C7C7&displaySum=yes&displayHeader=yes'>
+</script>
+
+<!-- Graph Bar Embed -->
+<script type='text/javascript' 
+        src='https://darksky.net/widget/graph-bar/<%= @trip.latitude %>,<%= @trip.longitude %>/si12/en.js?width=100%&height=400&title=Full Forecast&textColor=333333&bgColor=transparent&transparency=true&skyColor=undefined&fontFamily=Default&customFont=&units=si&timeColor=333333&tempColor=333333&currentDetailsOption=true'></script>
+
+<!--Map Embed-->
+<script src='https://darksky.net/map-embed/@temperature,<%= @trip.latitude %>,<%= @trip.longitude %>,3.js?embed=true&timeControl=true&fieldControl=true&defaultField=temperature&defaultUnits=_c'></script>
+
+
+<script type='text/javascript'>
+
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+
+</script>
+
+
+</html>

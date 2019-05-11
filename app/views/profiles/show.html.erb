@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<body>
+   <% if @profile.user_id==current_user.id%>
+<div class="stripe-1" > <h1 style="font-style: italic;">Welcome back <%= @decorated_profile.full_name %> .</h1></div><br/>
+<div style="border: 2px solid black;">
+ 
+<p id="notice"></p>
+
+<p>
+  <h3><strong >First Name:</strong>
+  <%= @profile.firstname %></h3>
+</p>
+
+<p>
+  <h3><strong >Last Name:</strong>
+  <%= @profile.lastname %></h3>
+</p>
+
+<p>
+  <h3><strong >Likedevent:</strong>
+  <%= @profile.likedevent %></h3>
+</p>
+
+<p>
+  <h3><strong >Likedvenue:</strong>
+  <%= @profile.likedvenue %></h3>
+</p>
+
+<p>
+  <h3><strong >Address:</strong>
+  <%= @profile.address %></h3>
+</p>
+</div>
+<br><br>
+
+<%= link_to 'Edit Profile', edit_profile_path(@profile) , class: 'btn btn-info' %> | &nbsp;
+
+<%= link_to 'My Trips', trips_path, class: 'btn btn-info' %>
+<%else%>
+<h1>You are not authorized.</h1>
+<%end%>
+</body>
+</html>

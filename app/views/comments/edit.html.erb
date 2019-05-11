@@ -1,0 +1,15 @@
+<h1>Editing Comment</h1>
+
+<%= form_for([@message, @comment]) do |f| %>
+	
+	<div class="field">
+  <%= f.label :"Comment :" %>	    
+  <%= f.text_area :content %>
+  </div>
+  
+  <div class="actions">
+     
+	<%= f.button :Update, label: "Update" ,class: "btn btn-default"%>
+	</div>
+<% end %>
+

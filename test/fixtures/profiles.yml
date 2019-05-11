@@ -1,0 +1,62 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  firstname: MyString
+  lastname: MyString
+  likedevent: music
+  likedvenue: arts
+  address: test1
+  user: one
+
+two:
+  firstname: 
+  lastname: MyString
+  likedevent: music
+  likedvenue: arts
+  address: test2
+  user: one
+  
+three:
+  firstname: MyString
+  lastname: 
+  likedevent: music
+  likedvenue: arts
+  address: test2
+  user: one
+  
+fourth:
+  firstname: MyString
+  lastname: MyString
+  likedevent: 
+  likedvenue: MyString
+  address: test2
+  user: one
+  
+fifth:
+  firstname: MyString
+  lastname: MyString
+  likedevent: music
+  likedvenue: 
+  address: test2
+  user: one
+  
+sixth:
+  firstname: MyString
+  lastname: MyString
+  likedevent: music
+  likedvenue: arts
+  address: 
+  user: two
+  
+seventh:
+  firstname: MyString
+  lastname: MyString
+  likedevent: music
+  likedvenue: arts
+  address: test
+  user: 
+  
+
+
+  
+ 

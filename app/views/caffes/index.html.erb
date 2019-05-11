@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+	
+	
+
+</script>
+  </head>
+<body>
+  <div style="border: 1px solid black;">
+<h1 style="text-align:center">Find Venues near me</h1>
+
+<%= form_tag trip_caffes_path, :method => :get do %>
+  <p style= "text-align:center">
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", :name => nil %>
+  </p>
+<% end %>
+</div>
+<br>
+<%= link_to 'Back', @trip, class: 'btn btn-danger' %>
+<br>
+<div>
+<p style= "text-align:center; text-transform: uppercase; text-decoration: underline; text-shadow: 0px 0px green;"> 
+           <%= @recommended %> Venues near <%= @trip.destination %></p>
+</div><br>
+
+<% @custom_venues.each do |cafes| %>
+ 
+
+          <h1 style="text-align=middle"> Near <%= cafes.geocode.feature.displayName %> </h1>
+          <% if cafes.venues.first %>
+          <p style="font-size:22px; color:red;">The closest destination for <%= params[:search] %> is <strong><%= cafes.venues.first.name %></strong>.</p>
+           <% end %>
+              
+     <table>
+
+      <tbody>
+     
+       <div class="results-container" id="demo">
+	  		
+    		<span class="label label-info">
+          <strong>Showing closet <%= cafes.venues.size %></strong> 
+          <%= params[:search] %> places in <strong><%= cafes.geocode.feature.displayName %></strong>
+        </span>
+          
+        <br />
+        
+        <ul class="list-group"><br>
+          	
+	    		<% cafes.venues.each do |cafe| %>
+	    	
+	    		 <tr>
+            <td>
+	    		<li class="list-group-item list-group-item-primary">
+		            <strong><%= cafe.name %></strong><br />
+		            <%= cafe.location.address %><br />
+		             <%= cafe.location.postalCode %><br />
+		             
+					       <p style="display:none">getDistanceFromLatLonInKm(<%= cafe.location.lat %>,<%= cafe.location.lng %>,<%=@trip.latitude %>,<%=@trip.longitude %>)</p>
+	
+                       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                      <iframe width="400" height="300" frameborder="0" style="border:0"
+                   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD2noFih7eI5djAPfn5OpKy7d7hDE-ywaQ&q= 
+                     <%= cafe.location.lat %>, <%= cafe.location.lng %>"
+                    allowfullscreen>
+                  </iframe>
+    	   
+	         </li>
+         </td>  
+        </tr> 
+        <% end %>
+    		</ul>
+    	 
+	  	</div>
+       </tr>
+  </tbody>
+ 
+ 
+</table>
+
+     
+<% end %>	
+
+
+<br><br>
+
+
+</body>
+</html>

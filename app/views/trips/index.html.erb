@@ -1,0 +1,164 @@
+<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="javascript">
+
+</script>
+  
+</head>
+<body>
+<div class="container">
+<label>Manage Trips</label>
+<div style = "float:right;">
+ <label>Search Trips</label>
+ <%= form_tag(trips_path, method: :get) do %>
+<%= text_field_tag(:search, params[:search]) %>
+<%= submit_tag ("Search") ,class: 'btn btn-danger'%>
+<% end %>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Destination</th>
+      <th>Trip Start Date</th>
+      <th>Trip End Date</th>
+      <th>Rating</th>
+      <th>Show me</th>
+      <th>Edit me</th>
+      <th>Delete me</th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trips.each do |trip| %>
+     <% if current_user.id == trip.user_id && trip.enddate >= Time.now.to_date %>
+      <tr>
+        <td><%= trip.destination %></td>
+        <td><%= trip.startdate %></td>
+        <td><%= trip.enddate %></td>
+        <td>
+        <ul class="rating">
+        
+        <% (1..5).each do |i|%>
+        <li class="glyphicon glyphicon-star-empty rating_star" data-stars="<%= i %>" data-movie-id="<%= trip.id %>" id="<%= "#{trip.id}_#{i}"%>"></li>
+        <%end%>
+        </ul>    
+        </td>
+        
+        <td><%= link_to 'Show', trip , class: 'btn btn-danger'%></td>
+        <td>
+          <%= link_to 'Edit', edit_trip_path(trip), class: 'btn btn-danger'%>
+        </td>
+        <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'%></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+
+<%= link_to 'Add a New Trip', new_trip_path, class: 'btn btn-danger' %><br/>
+<table class="table table-hover">
+  
+
+<h2>Past Trips</h2>
+<thead>
+    <tr>
+      <th>Destination</th>
+      <th>Trip Start Date</th>
+      <th>Trip End Date</th>
+      <th>Show me</th>
+       <th>Delete me</th>
+      </tr>
+      </thead>
+      <tbody>
+<% @trips.each do |trip| %>
+<% if current_user.id == trip.user_id %>
+<% if trip.enddate < Time.now.to_date %>
+
+    <tr>
+        <td><%= trip.destination %></td>
+        <td><%= trip.startdate %></td>
+        <td><%= trip.enddate %></td>
+        <td><%= link_to 'Show', trip , class: 'btn btn-danger'%></td>
+       <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-danger'%></td>
+     
+    </tr>
+    <tr></tr>
+  
+<% end %>
+<% end %>
+<% end %>
+</tbody>
+</table>
+  
+  
+  
+<table class="table table-hover">
+  
+
+<h2>Recommended Trips by Other Users</h2>
+<thead>
+    <tr>
+      <th>Added By </th>
+      <th>Destination</th>
+      <th>Trip Start Date</th>
+      <th>Trip End Date</th>
+      <th>Liked the Event </th>
+      <th>Liked the Venue </th>
+      </tr>
+      </thead>
+      <tbody>
+<% @recommended_trips.each do |tripss| %>
+<% tripss.each do |trip| %>
+    <tr>
+        <td><%= User.find(trip.user_id).email %></td>
+        <td><%= trip.destination %></td>
+        <td><%= trip.startdate %></td>
+        <td><%= trip.enddate %></td>
+        <td><%= link_to 'Like', "trip/#{trip.id}/likedevent" , class: 'btn btn-danger'%></td>
+        <td><%= link_to 'Like', "trip/#{trip.id}/likedvenue" , class: 'btn btn-danger'%></td>
+    </tr>
+    <!-- trip_likedtrip_path -->
+    <tr></tr>
+  <% end %>
+<% end %>
+</tbody>
+</table>  
+
+
+<table class="table table-hover">
+  
+
+<h2>Recommended Trips by Same Destination</h2>
+<thead>
+    <tr>
+      <th>Added By </th>
+      <th>Destination</th>
+      <th>Trip Start Date</th>
+      <th>Trip End Date</th>
+     
+      
+      </tr>
+      </thead>
+      <tbody>
+<% @recommended_trips_by_destination.each do |trip| %>
+    <tr>
+        <td><%= User.find(trip.user_id).email %></td>
+        <td><%= trip.destination %></td>
+        <td><%= trip.startdate %></td>
+        <td><%= trip.enddate %></td>
+     
+    </tr>
+    
+    <tr></tr>
+<% end %>
+</tbody>
+</table>
+
+
+</body>
+</html>

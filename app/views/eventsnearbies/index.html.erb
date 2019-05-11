@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <div style="border: 1px solid black;">
+<h1 style="text-align:center">Find Events near me</h1>
+
+<%= form_tag trip_eventsnearbies_path, :method => :get do %>
+  <p style= "text-align:center">
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", :name => nil %>
+  </p>
+<% end %>
+
+</div>
+<br>
+<%= link_to 'Back', @trip, class: 'btn btn-danger' %>
+<br><br>
+
+<div>
+<p style= "text-align:center; text-transform: uppercase; text-decoration: underline; text-shadow: 2px 2px green;"> 
+           <%= @recommended %> Events near <%= @trip.destination %></p>
+</div>
+
+<% @custom_events.each do |customevent| %>
+
+<table>
+
+  <tbody>
+      <tr>
+        <td style="border: 1px solid black;">
+         <ul>
+           <% customevent.events.each do |event| %>
+           <li>
+             
+                <a href="<%= event.url %>" target="_blank"><strong><%= event.name.text %></strong></a>
+           </li>
+          <% end %>
+         </ul>
+         
+         
+       </td>
+      </tr>
+    
+  </tbody>
+</table>
+<% end %>
+<br><br>
+
+
+</body>
+</html>

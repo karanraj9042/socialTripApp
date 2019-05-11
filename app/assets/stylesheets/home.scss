@@ -1,0 +1,12 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// Added Background Image. for home page
+.background{
+     margin: 0;
+     background-image: url("dribbble.jpg");
+     background-size: 1440px 800px;
+     background-repeat:no-repeat;
+     display: compact;
+     font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

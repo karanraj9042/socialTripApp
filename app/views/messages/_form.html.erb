@@ -1,0 +1,29 @@
+<%= form_with(model: @message, local: true) do |form| %>
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+      <% @message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, class:"form-control z-depth-1" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, class:"form-control z-depth-1" %>
+  </div>
+
+  <div class="actions">
+   
+    <%= form.button :Submit, class: "btn btn-default" %> |
+    <%= link_to 'Back', messages_path, class: "btn btn-default" %>
+  </div>
+<% end %>

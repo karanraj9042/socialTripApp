@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Greetings for the day, <%= @user.email %></h1>
+    <h2>This is to remind you that you have updated your profile, liked events are <strong style="color:violet"> "<%= @profile.likedevent %>" </strong>
+    
+    and liked venues are  <strong style="color:violet"> "<%= @profile.likedvenue %>" </strong></h2>
+   
+    <br>
+    <p>Warm Regards</p>
+    <p>Team, Social Trip App</p>
+  </body>
+</html>

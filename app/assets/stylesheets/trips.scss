@@ -1,0 +1,28 @@
+// Place all the styles related to the Trips controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+.stripe-1 {
+ color: white;
+  background: linear-gradient(
+    to bottom,
+    #5d9634,
+    #5d9634 50%,
+    #538c2b 50%,
+    #538c2b
+  );
+  background-size: 100% 20px;
+}
+
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Greetings for the day, <%= @user.email %></h1>
+    <h2>This is a weather update for your upcoming trip to <strong style="color:violet"> <%= @trip.destination%> ! </strong>, If you wish to replan your trip , login to your Social Trip account</h2>
+    <p>Destination : <strong><%= @trip.destination%></strong></p>
+    <p>Trip start date : <strong><%= @trip.startdate%></strong></p>
+    <p>Trip end date : <strong><%= @trip.enddate%></strong></p>
+    <h2>Weather Update for <strong><%= @trip.destination%></strong> </h2>
+    <p>Temperature : <strong style= "color:red;"><%= @temperature%></strong></p>
+    <p>Wind Speed : <strong style= "color:red;"><%= @windSpeed%></strong></p>
+    <br>
+    <p>Warm Regards</p>
+    <p>Team, Social Trip App</p>
+  </body>
+</html>

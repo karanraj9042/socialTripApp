@@ -1,0 +1,22 @@
+<% provide(:title, "Home") %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="apptrana" content="a50191b74b7d4930a22d22d265de1b08">
+    <!--<meta name="detectify-verification" content="8a47e72df74509b5da562fa5be0bcbdf"/>-->
+    <title><%= yield(:title) %> | Social Tour Planner App</title>
+  </head>
+  <body class="background">
+<div class="center jumbotron">
+  <h1>Welcome to the Social Trip </h1>
+   <h1>Planner Application</h1>
+  <% if !user_signed_in? %>
+     <h3>If not Registered!</h3>
+      <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
+</div>
+<a href="https://seal.beyondsecurity.com/vulnerability-scanner-verification/fast-falls-62808.herokuapp.com">
+  <img src="https://seal.beyondsecurity.com/verification-images/fast-falls-62808.herokuapp.com/vulnerability-scanner-2.gif" 
+        alt="Website Security Test" border="0"></a>
+</body>
+</html>

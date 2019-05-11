@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Greetings for the day, <%= @user.email %></h1>
+    <h2>This is a gentle reminder that you have updated your trip details!</h2>
+    <p>Destination : <strong><%= @trip.destination%></strong></p>
+    <p>Trip start date : <strong><%= @trip.startdate%></strong></p>
+    <p>Trip end date : <strong><%= @trip.enddate%></strong></p>
+    <br>
+    <p>Warm Regards</p>
+    <p>Team, Social Trip App</p>
+  </body>
+</html>

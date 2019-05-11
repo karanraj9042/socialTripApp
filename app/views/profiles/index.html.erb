@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+       });
+    </script>
+  </head>
+<body>
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>My Profile</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Likedevent</th>
+      <th>Likedvenue</th>
+      <th>Address</th>
+      <th>Show me</th>
+      <th>Edit me</th>
+      <th>Delete me</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profiles.each do |profile| %>
+     <% if current_user.id == profile.user_id %>
+      <tr>
+        <td><%= profile.firstname %></td>
+        <td><%= profile.lastname %></td>
+        <td><%= profile.likedevent %></td>
+        <td><%= profile.likedvenue %></td>
+        <td><%= profile.address %></td>
+        <td><%= link_to 'Show', profile , class: 'btn btn-success'%></td>
+        <td><%= link_to 'Edit', edit_profile_path(profile), class: 'btn btn-success' %></td><br/>
+        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-success'%></td>
+      </tr>
+       <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br><br><br>
+
+<div id= "trip">
+<%= link_to 'My Trips', trips_path, class: 'btn btn-danger' %> | &nbsp;
+
+
+<%= link_to 'New Profile', new_profile_path, class: 'btn btn-danger' %>
+</div>
+
+</body>
+</html>
+
